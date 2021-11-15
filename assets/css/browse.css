@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.product-card {
+  margin: 20px;
+  border: 2px solid black;
+  border-radius: 20px;
+  width: 170px;
+  height: 200px;
+  overflow: hidden;
+}
+.product-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
+}
+
+.product-image {
+  height: 65%;
+}

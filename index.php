@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['login'])) {
-    header('Location: browse.php');
+    header('Location: ./pages/browse.php');
     exit;
 }
 ?>
@@ -15,7 +15,7 @@ if (isset($_SESSION['login'])) {
     <title>Document</title>
 </head>
 <body>
-    <a href="daftar.php">daftar</a>
-    <a href="masuk.php">masuk</a>
+    <a href="./pages/daftar.php">daftar</a>
+    <a href="./pages/masuk.php">masuk</a>
 </body>
 </html>

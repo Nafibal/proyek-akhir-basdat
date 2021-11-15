@@ -1,9 +1,6 @@
 <?php
-session_start();
-if (!isset($_SESSION['login'])) {
-    header('Location: index.php');
-    exit;
-}
+    session_start();
+    var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +12,7 @@ if (!isset($_SESSION['login'])) {
     <title>Document</title>
 </head>
 <body>
-    <h1>browse</h1>
-    <a href="logout.php">logout</a>
+    <h1>ADMIN</h1>
+    <a href="../logout.php">logout</a>
 </body>
 </html>

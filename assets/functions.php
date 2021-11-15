@@ -47,12 +47,21 @@ function hapus($data) {
 }
 
 // UPDATE
-function ubah($data) {
+function updateAkun($data, $email) {
    global $conn;
 
-   $query = "UPDATE admin SET pass_admin = :pass_admin WHERE id_admin = :id_admin";
-   $stmt = $conn->prepare($query);
-   $stmt->execute($data);
+   $nama=$data['nama'];
+   $notelepon=$data['notelepon'];
+   $alamat=$data['alamat'];
+   $kecamatan = $data['kecamatan'];
+   $kota = $data['kota'];
+   $provinsi = $data['provinsi'];
+
+   $sql = "UPDATE pembeli SET nama=?, notelepon=?, alamat=?, kecamatan=?, kota=?, provinsi=? WHERE email=?";
+   $stmt = $conn->prepare($sql);
+   $stmt->execute([$nama, $notelepon, $alamat, $kecamatan, $kota, $provinsi, $email]);
+
+   return $stmt->rowCount();
 }
 
 // SEARCH
