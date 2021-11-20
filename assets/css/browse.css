@@ -1,25 +1,105 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,800;1,300;1,800&family=Podkova:wght@400;500&display=swap");
+
+/* BROWSE SECTION */
+.section-browse .container {
+  display: flex;
+  padding: 50px 0;
 }
 
+/* SEARCH */
+
+.search-container {
+  margin-right: 20px;
+}
+.search-text {
+  margin-bottom: 10px;
+  font-family: "Nunito";
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+form input {
+  width: 150px;
+  padding: 0.5rem;
+  background: #fcd2d3;
+  color: #ad6c6e;
+  border-radius: 5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-color: transparent;
+  letter-spacing: 2px;
+  outline: none;
+}
+form button {
+  height: 35px;
+  width: 35px;
+  border: none;
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  background-color: #fcd2d3;
+  cursor: pointer;
+}
+
+/* PRODUCT */
+.product-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
 .product-card {
-  margin: 20px;
-  border: 2px solid black;
-  border-radius: 20px;
+  position: relative;
+  margin-right: 20px;
+  padding: 10px;
+  border-radius: 5px;
   width: 170px;
-  height: 200px;
+  height: 220px;
   overflow: hidden;
+  box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.63);
+}
+.product-image {
+  height: 55%;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 5px;
 }
 .product-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding: 3px;
+  align-items: flex-start;
 }
-
-.product-image {
-  height: 65%;
+.product-name {
+  font-family: "Nunito";
+  font-weight: bold;
+  font-size: 25px;
+}
+.product-stock {
+  font-family: "Sora";
+  font-size: 14px;
+}
+.product-price {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  font-family: "Nunito";
+  font-weight: bold;
+  font-size: 18px;
+}
+.product-info button {
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  color: #ff9899;
+  cursor: pointer;
 }

@@ -7,7 +7,7 @@ if (!isset($_SESSION['login'])) {
     exit;
 }
 
-var_dump($_SESSION);
+// var_dump($_SESSION);
 
 if(isset($_POST['submit'])) {
     if(updateAkun($_POST, $_SESSION['email']) == '1') {
@@ -58,7 +58,9 @@ if(isset($_POST['submit'])) {
                 <label for="provinsi">Provinsi</label>
                 <input type="text" name="provinsi" id="provinsi" required>
             </div>
-            <button type="submit" name="submit">Submit</button>
+            <div class="input-container">
+                <button type="submit" name="submit">Submit</button>
+            </div>
         </form>
     </body>
 </html>

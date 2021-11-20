@@ -7,7 +7,6 @@ body {
 
 .box {
   width: 500px;
-  height: 300px;
   padding: 40px;
   position: absolute;
   top: 50%;
@@ -19,6 +18,30 @@ body {
 }
 
 .input-container {
+  text-align: left;
+  margin: 0 auto 10px;
+  width: 70%;
   display: flex;
   flex-direction: column;
+}
+
+.input-container label {
+  margin-bottom: 4px;
+}
+.input-container input {
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  outline: none;
+}
+.input-container button {
+  border-radius: 10px;
+  width: 100%;
+  margin-top: 20px;
+  height: 35px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: #f766d7;
+  color: white;
 }

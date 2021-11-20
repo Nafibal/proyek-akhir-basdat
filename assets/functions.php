@@ -68,8 +68,7 @@ function updateAkun($data, $email) {
 function cari($keyword) {
    global $conn;
 
-   $query = "SELECT * FROM admin WHERE id_admin LIKE '%$keyword%' OR
-                                       dll LIKE '%$keyword%' ";
+   $query = "SELECT * FROM produk WHERE nama_produk LIKE '%$keyword%'";
 
    return query($query);
 }

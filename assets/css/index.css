@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,800;1,300;1,800&family=Podkova:wght@400;500&display=swap");
+
+/* HERO */
+.hero {
+  /* border: 2px solid red; */
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+}
+.hero .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+}
+.hero-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  /* border: 2px solid red; */
+}
+.hero-info h1 {
+  font-family: "Nunito";
+  font-weight: 800;
+  font-style: italic;
+  font-size: 50px;
+}
+.hero-info p {
+  font-family: "Podkova";
+  font-weight: 400;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.hero-img {
+  width: 550px;
+}
+.btn.big {
+  font-size: 18px;
+}
