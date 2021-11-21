@@ -62,3 +62,20 @@ nav .btn-container {
   justify-content: flex-end;
   align-items: center;
 }
+nav .btn.btn-cart {
+  margin-right: 20px;
+  font-size: 25px;
+  position: relative;
+}
+nav .btn.btn-cart a {
+  color: #590c06;
+}
+nav .btn.btn-cart span {
+  position: absolute;
+  bottom: 0;
+  left: 5px;
+  font-size: 15px;
+  background-color: white;
+  padding: 3px 6px;
+  border-radius: 50%;
+}

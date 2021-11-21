@@ -42,14 +42,6 @@ if (isset($_POST['cari'])) {
     $produk = cari($_POST['keyword']);
 }
 
-// COUNT PADA CART
-// if (isset($_SESSION['cart'])) {
-//     $count = count($_SESSION["cart"]);
-//     echo "<span id=\"cart_count\">$count</span>";
-// } else {
-//     echo "<span id=\"cart_count\">0</span>";
-// }
-
 ?>
 
 <!DOCTYPE html>
@@ -60,29 +52,42 @@ if (isset($_POST['cari'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Browse</title>
 
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="../assets/css/navigation.css">
-    <link rel="stylesheet" href="../assets/css/browse.css">
+    <link rel="stylesheet" href="../assets/css/browsev1.css">
 </head>
 <body>
     <?php require_once('./navigation.php') ?>
     
-    <section>
+    <section class="section-browse">
         <div class="container">
-
-            <h1>browse</h1>
-            <form action="" method="post">
-                <input type="text" name="keyword" autocomplete="off">
-                <button type="submit" name="cari">Cari!</button>
-            </form>
+            <div class="search-container">
+                <p class="search-text">SEARCH</p>
+                <form action="" method="post">
+                    <input type="text" name="keyword" autocomplete="off" />
+                    <button type="submit" name="cari">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
             <div class="product-container"> 
                 <?php  foreach ($produk as $p) : ?>
                     <div class="product-card">
                         <img src="../assets/img/croissant.jpeg" alt="" class="product-image">
                         <div class="product-info">
                             <p class="product-name"><?= $p["nama_produk"]; ?></p>
-                            <p class="product-price"><?= $p["harga"]; ?></p>
-                            <p class="product-stock"><?= $p["stok"]; ?></p>
-                            <button>Add to Cart</button>
+                            <p class="product-price">Rp. <?= $p["harga"]; ?></p>
+                            <p class="product-stock">Stock : <?= $p["stok"]; ?></p>
+                            <button type="submit" name="product_add">
+                                <i class="fas fa-plus-circle"></i>
+                            </button>
+                            <input type="hidden" name="product_id" value=<?= $p["id_produk"]; ?>>
                         </div>
                     </div>
                 <?php endforeach; ?>        
