@@ -47,19 +47,34 @@ function hapus($data) {
 }
 
 // UPDATE
-function updateAkun($data, $email) {
+function editProduk($data) {
    global $conn;
 
+   $id=$data['id'];
+   $nama=$data['nama'];
+   $stok=$data['stok'];
+   $harga=$data['harga'];
+
+   $sql = "UPDATE produk SET nama_produk=?, stok=?, harga=? WHERE id_produk=?";
+   $stmt = $conn->prepare($sql);
+   $stmt->execute([$nama, $stok, $harga, $id]);
+
+   return $stmt->rowCount();
+}
+function editKurir($data) {
+   global $conn;
+
+   $id=$data['id'];
    $nama=$data['nama'];
    $notelepon=$data['notelepon'];
    $alamat=$data['alamat'];
-   $kecamatan = $data['kecamatan'];
-   $kota = $data['kota'];
-   $provinsi = $data['provinsi'];
+   $kecamatan=$data['kecamatan'];
+   $kota=$data['kota'];
+   $provinsi=$data['provinsi'];
 
-   $sql = "UPDATE pembeli SET nama=?, notelepon=?, alamat=?, kecamatan=?, kota=?, provinsi=? WHERE email=?";
+   $sql = "UPDATE kurir SET nama=?, alamat=?, kecamatan=?, kota=?, provinsi=?, notelepon=? WHERE id_kurir=?";
    $stmt = $conn->prepare($sql);
-   $stmt->execute([$nama, $notelepon, $alamat, $kecamatan, $kota, $provinsi, $email]);
+   $stmt->execute([$nama, $alamat, $kecamatan, $kota, $provinsi, $notelepon, $id]);
 
    return $stmt->rowCount();
 }
@@ -151,8 +166,5 @@ function daftar($data) {
    $stmt->execute([$id, $email, $password]);
    return 1;
 }
-
-// LOGIN
-
 
 ?>  

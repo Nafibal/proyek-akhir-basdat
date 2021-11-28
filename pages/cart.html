@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../assets/css/navigation.css" />
+    <link rel="stylesheet" href="../assets/css/cart.css" />
+  </head>
+  <body>
+    <nav class="alternate">
+      <div class="container">
+        <img src="../assets/img/logo-alt.png" alt="log0" />
+        <div class="btn-container">
+          <button class="btn btn-cart">
+            <a href=""
+              ><i class="fas fa-shopping-cart"></i>
+              <span>2</span>
+            </a>
+          </button>
+          <button class="btn btn-alt-2">
+            <a href="../logout.php">logout</a>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <section class="section-cart">
+      <div class="container">
+        <div class="cart-container">
+          <!-- SINGLE ITEM -->
+          <form action="" method="get">
+            <div class="cart-item">
+              <img src="../assets/img/bread.jpg" alt="" />
+              <div class="cart-info">
+                <p class="product-name">Bread</p>
+                <p class="product-stock">Stock : 20</p>
+                <p class="product-price">Rp. 30000</p>
+                <button class="btn" type="submit" name="remove">Remove</button>
+              </div>
+              <div class="cart-count">
+                <button class="cart-min">
+                  <i class="fas fa-minus-circle"></i>
+                </button>
+                <input type="text" value="1" />
+                <button class="cart-plus">
+                  <i class="fas fa-plus-circle"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+          <!-- END OF SINGLE ITEM -->
+          <!-- SINGLE ITEM -->
+          <form action="" method="get">
+            <div class="cart-item">
+              <img src="../assets/img/bread.jpg" alt="" />
+              <div class="cart-info">
+                <p class="product-name">Bread</p>
+                <p class="product-stock">Stock : 20</p>
+                <p class="product-price">Rp. 30000</p>
+                <button class="btn" type="submit" name="remove">Remove</button>
+              </div>
+              <div class="cart-count">
+                <button class="cart-min">
+                  <i class="fas fa-minus-circle"></i>
+                </button>
+                <input type="text" value="1" />
+                <button class="cart-plus">
+                  <i class="fas fa-plus-circle"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+          <!-- END OF SINGLE ITEM -->
+          <!-- SINGLE ITEM -->
+          <form action="" method="get">
+            <div class="cart-item">
+              <img src="../assets/img/bread.jpg" alt="" />
+              <div class="cart-info">
+                <p class="product-name">Bread</p>
+                <p class="product-stock">Stock : 20</p>
+                <p class="product-price">Rp. 30000</p>
+                <button class="btn" type="submit" name="remove">Remove</button>
+              </div>
+              <div class="cart-count">
+                <button class="cart-min">
+                  <i class="fas fa-minus-circle"></i>
+                </button>
+                <input type="text" value="1" />
+                <button class="cart-plus">
+                  <i class="fas fa-plus-circle"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+          <!-- END OF SINGLE ITEM -->
+        </div>
+
+        <div class="cart-checkout">
+          <h4>PRICE DETAIL</h4>
+          <span class="line"></span>
+          <div class="flex">
+            <p class="product-total">Price (3 items)</p>
+            <p>Rp. 90000</p>
+          </div>
+          <div class="flex">
+            <p class="delivery-payment">Delivery Charges</p>
+            <p>FREE</p>
+          </div>
+          <span class="line"></span>
+          <div class="flex">
+            <p class="total-payment">Amount payable</p>
+            <p>Rp. 90000</p>
+          </div>
+          <button class="btn">CHECKOUT</button>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
