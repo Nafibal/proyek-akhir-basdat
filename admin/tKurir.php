@@ -1,5 +1,9 @@
 <?php
   // Ambil Produk
+  require '../assets/functions.php';
+
+  $kurir = query("SELECT * FROM kurir");
+
 ?>
 
 
@@ -29,7 +33,3 @@
         <?php endforeach; ?>   
       </tbody>
     </table>
-
-    <form action="" method="post">
-      <button type="submit" name="edit">Download PDF</button>
-    </form>

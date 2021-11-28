@@ -36,6 +36,3 @@
   </tbody>
 </table>
 
-<form class="hide" action="" method="post">
-  <button type="submit" name="pdf-produk">Download PDF</button>
-</form>

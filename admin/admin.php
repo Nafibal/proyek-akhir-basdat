@@ -8,7 +8,6 @@
         exit;
     }
 
-    // $kurir = query("SELECT * FROM kurir");
     // var_dump($produk);
 
     
@@ -32,19 +31,32 @@
         <button type='submit' name="tampil-produk">PRODUK</button>
         <button type='submit' name="tampil-kurir">KURIR</button>
         <button type='submit' name="tampil-pesanan">RIWAYAT PESANAN</button>
+        <button type="submit" name="pdf">Download PDF</button>
+
     </form>
 
     <?php 
         if (isset($_POST['tampil-produk'])) {
+            $_SESSION['choice'] = "produk";
             include("tProduk.php");
         }
         if (isset($_POST['tampil-kurir'])) {
+            $_SESSION['choice'] = "kurir";
             include("tKurir.php");
         }
-        if (isset($_POST['pdf-produk'])) {
-            // echo"hello";
-            // header('location:pdf.php');
-        
+        if (isset($_POST['pdf'])) {
+            if ($_SESSION['choice'] == "produk") {
+                downloadPDF("Produk", "tProduk");
+            } else if ($_SESSION['choice'] == "kurir") {
+                downloadPDF("Kurir", "tKurir");
+            } else {
+                // echo "pilihan ". $choice;
+                // echo "Pilih Data!!";
+            }
+            unset($_SESSION['choice']);
+        }
+
+          function downloadPDF($name, $data) {
             require_once('../assets/tcpdf/tcpdf.php');
         
             // create new PDF document
@@ -53,9 +65,9 @@
             // set document information
             $pdf->SetCreator(PDF_CREATOR);
             $pdf->SetAuthor('Sweet For You');
-            $pdf->SetTitle('Data Produk');
-            $pdf->SetSubject('Produk');
-            $pdf->SetKeywords('Prdouk, Data Produk');
+            $pdf->SetTitle('Data ' . $name);
+            $pdf->SetSubject($name);
+            $pdf->SetKeywords($name . ', Data Produk');
             
             // $pdf->SetFont('dejavusans', '', 14, '', true);
 
@@ -65,13 +77,13 @@
             
             $pdf->AddPage();
             
-            $html = file_get_contents("http://localhost/SweetForYou/admin/tProduk.php");
+            $html = file_get_contents("http://localhost/SweetForYou/admin/".$data.".php");
             
             $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
     
             ob_end_clean();
 
-            $pdf->Output('Data Produk.pdf', 'I');
+            $pdf->Output('Data '.$name.'.pdf', 'I');
           }
     ?>
     
