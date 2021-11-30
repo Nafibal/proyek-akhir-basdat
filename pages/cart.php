@@ -2,40 +2,14 @@
   session_start();
   require '../assets/functions.php';
 
+  // var_dump($_SESSION['cart']);
+
   // Cek Login
   if (!isset($_SESSION['login'])) {
       header('Location: ../index.php');
       exit;
   }
 
-  // Ambil Produk dari database dan hitung total harga
-  $total = 0;
-  if (isset($_SESSION['cart'])) {
-    $cart_item = array();
-    foreach ($_SESSION['cart'] as $item) {
-      // Ambil produk dengan ID yg sama pada session cart
-      $stmt = $conn->prepare("SELECT * FROM produk WHERE id_produk=?");
-      $stmt->execute([$item['product_id']]); 
-      $produk = $stmt->fetch(PDO::FETCH_ASSOC);
-  
-      array_push($cart_item, $produk);
-      // Hitung Total Harga
-      $total = $total + (int)$produk['harga'];
-    }
-  }
-
-  // Hapus Produk
-  if (isset($_POST['remove'])) {
-    if ($_GET['action'] == 'remove') {
-      foreach ($_SESSION['cart'] as $key => $value) {
-        if ($value['product_id'] == $_GET['id']) {
-          unset($_SESSION['cart'][$key]);
-          echo '<script>alert("Produk berhasil dihapus")</script>';
-          echo '<script>window.location="cart.php"</script>';
-        }
-      }
-    }
-  }
 ?>
 
 <!DOCTYPE html>
@@ -69,30 +43,42 @@
     <section class="section-cart">
       <div class="container">
         <div class="cart-container">
+          <?php $hargaTotal=0 ?>
           <!-- SINGLE ITEM -->
-          <?php  foreach ($cart_item as $item) : ?>
-          <form action="cart.php?action=remove&id=<?= $item["id_produk"] ?>" method="post">
-            <div class="cart-item">
-              <img src="../assets/img/foto-produk/<?= $item['gambar'] ?>" alt="" />
-              <div class="cart-info">
-                <p class="product-name"><?= $item["nama_produk"]; ?></p>
-                <p class="product-stock">Stock : <?= $item["stok"]; ?></p>
-                <p class="product-price">Rp. <?= $item["harga"]; ?></p>
-                <button class="btn" type="submit" name="remove">Remove</button>
+          <?php if(!empty($_SESSION['cart'])) { ?>
+          <?php  foreach ($_SESSION['cart'] as $cart => $val) : ?>
+            <?php $subtotal = $val["harga"] * $val['jumlah']; ?>
+            <form action="proses_cart.php" method="post">
+              <input type="hidden" name="id" value=<?= $val['id'] ?>>
+              <div class="cart-item">
+                <img src="../assets/img/foto-produk/<?= $val['gambar'] ?>" alt="" />
+                <div class="cart-info">
+                  <p class="product-name"><?= $val["nama"]; ?></p>
+                  <p class="product-stock">Stock : <?= $val["stok"]; ?></p>
+                  <p class="product-price">Rp. <?= $val["harga"]; ?></p>
+                  <button class="btn" type="submit" name="remove">Remove</button>
+                </div>
+                <div>
+                  <div class="cart-count">
+                    <button type="submit" name="cart-min" class="cart-min">
+                      <i class="fas fa-minus-circle"></i>
+                    </button>
+                    <input type="text" value=<?= $val['jumlah']; ?> />
+                    <button type="submit" name="cart-plus" class="cart-plus">
+                      <i class="fas fa-plus-circle"></i>
+                    </button>
+                  </div>
+                  <p class="subtotal">Subtotal : Rp. <?= $subtotal ?></p>
+                </div>
               </div>
-              <div class="cart-count">
-                <button class="cart-min">
-                  <i class="fas fa-minus-circle"></i>
-                </button>
-                <input type="text" value="1" />
-                <button class="cart-plus">
-                  <i class="fas fa-plus-circle"></i>
-                </button>
-              </div>
-            </div>
-          </form>
+            </form>
+            <?php $hargaTotal += $subtotal; ?>
           <?php endforeach; ?>   
           <!-- END OF SINGLE ITEM -->
+          <?php } else {
+            echo "Belum ada produk ditambahkan";
+          }
+          ?>
         </div>
 
         <div class="cart-checkout">
@@ -107,7 +93,7 @@
                 echo "<p class='product-total'Price(0)</p>";
               }
             ?>
-            <p>Rp. <?= $total ?></p>
+            <p>Rp. <?= $hargaTotal ?></p>
           </div>
           <div class="flex">
             <p class="delivery-payment">Delivery Charges</p>
@@ -116,7 +102,7 @@
           <span class="line"></span>
           <div class="flex">
             <p class="total-payment">Amount payable</p>
-            <p>Rp. <?= $total ?></p>
+            <p>Rp. <?= $hargaTotal ?></p>
           </div>
           <button class="btn">CHECKOUT</button>
         </div>

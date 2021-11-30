@@ -8,32 +8,6 @@
     exit;
   }
 
-  // Tambah Produk ke keranjang
-  if(isset($_POST['product_add'])) {
-    if (isset($_SESSION['cart'])) {
-    $item_array_id = array_column($_SESSION['cart'], 'product_id');
-
-    if (in_array($_POST['product_id'], $item_array_id)) {
-      echo '<script>alert("Produk sudah ditambahkan")</script>';
-      echo '<script>window.location="browse.php"</script>';
-      } else {
-        $count = count($_SESSION["cart"]);
-        $item_array = array(
-            'product_id' => $_POST['product_id']
-        );
-
-        $_SESSION["cart"][$count] = $item_array;
-      }
-    } else {
-      $item_array = array(
-      'product_id' => $_POST['product_id']
-      );
-
-      // Buat variabel session baru
-      $_SESSION['cart'][0] = $item_array;
-    }
-  }
-
   // Ambil Produk
   $produk = query("SELECT * FROM produk");
 
@@ -83,7 +57,7 @@
                 <p class="product-name"><?= $p["nama_produk"]; ?></p>
                 <p class="product-price">Rp. <?= $p["harga"]; ?></p>
                 <p class="product-stock">Stock : <?= $p["stok"]; ?></p>
-                <form action="" method='post'>
+                <form action="tambah_cart.php" method='post'>
                   <button type="submit" name="product_add">
                     <i class="fas fa-plus-circle"></i>
                   </button>

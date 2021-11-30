@@ -6,7 +6,10 @@
         <a href="cart.php"><i class="fas fa-shopping-cart"></i>
           <?php
             if (isset($_SESSION['cart'])) {
-              $count = count($_SESSION["cart"]);
+              $count = 0;
+              foreach ($_SESSION['cart'] as $item) {
+                $count += $item['jumlah'];
+              }
               echo "<span id=\"cart_count\">$count</span>";
             } else {
               echo "<span id=\"cart_count\">0</span>";
