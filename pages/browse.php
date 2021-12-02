@@ -1,6 +1,6 @@
 <?php
   session_start();
-  require '../assets/functions.php';
+  require '../functions/functions.php';
 
   // Cek Login
   if (!isset($_SESSION['login'])) {
@@ -57,7 +57,7 @@
                 <p class="product-name"><?= $p["nama_produk"]; ?></p>
                 <p class="product-price">Rp. <?= $p["harga"]; ?></p>
                 <p class="product-stock">Stock : <?= $p["stok"]; ?></p>
-                <form action="tambah_cart.php" method='post'>
+                <form action="../functions/tambah_cart.php" method='post'>
                   <button type="submit" name="product_add">
                     <i class="fas fa-plus-circle"></i>
                   </button>

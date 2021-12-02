@@ -1,8 +1,6 @@
 <?php
   session_start();
-  require '../assets/functions.php';
-
-  // var_dump($_SESSION['cart']);
+  require '../functions/functions.php';
 
   // Cek Login
   if (!isset($_SESSION['login'])) {
@@ -48,7 +46,7 @@
           <?php if(!empty($_SESSION['cart'])) { ?>
           <?php  foreach ($_SESSION['cart'] as $cart => $val) : ?>
             <?php $subtotal = $val["harga"] * $val['jumlah']; ?>
-            <form action="proses_cart.php" method="post">
+            <form action="../functions/proses_cart.php" method="post">
               <input type="hidden" name="id" value=<?= $val['id'] ?>>
               <div class="cart-item">
                 <img src="../assets/img/foto-produk/<?= $val['gambar'] ?>" alt="" />
@@ -87,7 +85,10 @@
           <div class="flex">
             <?php
               if (isset($_SESSION['cart'])) {
-                $count = count($_SESSION['cart']);
+                $count = 0;
+                foreach ($_SESSION['cart'] as $item) {
+                  $count += $item['jumlah'];
+                }
                 echo "<p class='product-total'>Price($count items)</p>";
               } else {
                 echo "<p class='product-total'Price(0)</p>";

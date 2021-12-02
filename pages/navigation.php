@@ -18,7 +18,7 @@
         </a>
       </button>
       <button class="btn btn-alt-2">
-        <a href="../logout.php">logout</a>
+        <a href="../functions/logout.php">logout</a>
       </button>
     </div>
   </div>
