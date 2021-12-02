@@ -34,7 +34,16 @@ function tambah($data) {
    $query = "INSERT INTO admin VALUES (:id_admin, :pass_admin)";
    $stmt = $conn->prepare($query);
    $stmt->execute($data);
+}
+function login($id) {
+   global $conn;
    
+   date_default_timezone_set('Asia/Jakarta');
+   $date = date("Y-m-d H:i:s");
+
+   $sql = "INSERT INTO log_activity VALUES (?,?)";
+   $stmt= $conn->prepare($sql);
+   $stmt->execute([$id, $date]);
 }
 
 // DELETE
@@ -47,6 +56,28 @@ function hapus($data) {
 }
 
 // UPDATE
+function updateAkun($data, $email) {
+   global $conn;
+
+   $nama=$data['nama'];
+   $notelepon=$data['notelepon'];
+   $alamat=$data['alamat'];
+   $kecamatan = $data['kecamatan'];
+   $kota = $data['kota'];
+   $provinsi = $data['provinsi'];
+
+   $sql = "UPDATE pembeli SET nama=?, notelepon=?, alamat=?, kecamatan=?, kota=?, provinsi=? WHERE email=?";
+   $stmt = $conn->prepare($sql);
+   $stmt->execute([$nama, $notelepon, $alamat, $kecamatan, $kota, $provinsi, $email]);
+
+   // LOGIN
+   $stmt2 = $conn->prepare("SELECT * FROM pembeli WHERE email=?");
+   $stmt2->execute([$email]); 
+   $row = $stmt2->fetch(PDO::FETCH_ASSOC);
+   login($row['id_pembeli']);
+
+   return $stmt->rowCount();
+}
 function editProduk($data) {
    global $conn;
 

@@ -23,6 +23,7 @@
                 $_SESSION["login"] = true;
                 $_SESSION["admin"] = false;
                 $_SESSION["email"] = $_POST["email"];
+                login($row['id_pembeli']);
                 header("Location: browse.php");
                 exit;
             }
