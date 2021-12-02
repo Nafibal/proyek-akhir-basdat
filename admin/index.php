@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require '../assets/functions.php';
+    require '../functions/functions.php';
 
     if( isset($_POST["masuk"]) ) {
         $id_admin = $_POST["id_admin"];

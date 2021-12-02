@@ -1,5 +1,5 @@
 <?php
-  require '../assets/functions.php';
+    require '../functions/functions.php';
 
   $id = $_GET["id"];
   $kurir = query("SELECT * FROM kurir WHERE id_kurir = $id")[0];

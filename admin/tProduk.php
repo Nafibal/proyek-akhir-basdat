@@ -1,7 +1,7 @@
 <?php
   // Ambil Produk
   // $produk = query("SELECT * FROM produk");
-  require '../assets/functions.php';
+  require '../functions/functions.php';
 
   $produk = query("SELECT * FROM produk");
 

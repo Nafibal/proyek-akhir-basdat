@@ -1,6 +1,6 @@
 <?php
   session_start();
-  require '../assets/functions.php';
+  require './functions.php';
 
   $id = $_POST["id"];
 
@@ -22,6 +22,6 @@
   
 
 
-  header('location:cart.php');
+  header('location:../pages/cart.php');
 
 ?>

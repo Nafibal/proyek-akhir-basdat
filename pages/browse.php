@@ -52,7 +52,7 @@
         <div class="product-container"> 
           <?php  foreach ($produk as $p) : ?>
             <div class="product-card">
-              <img src="../assets/img/foto-produk/<?= $p['gambar'] ?>" alt="" class="product-image">
+              <img src="../assets/img/foto-produk/<?= $p['gambar_produk'] ?>" alt="" class="product-image">
               <div class="product-info">
                 <p class="product-name"><?= $p["nama_produk"]; ?></p>
                 <p class="product-price">Rp. <?= $p["harga"]; ?></p>

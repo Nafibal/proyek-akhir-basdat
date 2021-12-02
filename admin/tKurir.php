@@ -1,6 +1,6 @@
 <?php
   // Ambil Produk
-  require '../assets/functions.php';
+  require '../functions/functions.php';
 
   $kurir = query("SELECT * FROM kurir");
 

@@ -1,6 +1,6 @@
 <?php
   session_start();
-  require '../assets/functions.php';
+  require './functions.php';
 
   $id = $_POST['product_id'];
 
@@ -12,10 +12,10 @@
     "nama" => $result["nama_produk"],
     "stok" => $result["stok"],
     "harga" => $result["harga"],
-    "gambar" => $result["gambar"],
+    "gambar" => $result["gambar_produk"],
     "jumlah" => 1
   ];
 
-  header("location:browse.php")
+  header("location:../pages/browse.php")
 
 ?>
