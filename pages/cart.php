@@ -8,6 +8,7 @@
       exit;
   }
 
+
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +35,7 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="../assets/css/navigation.css" />
-    <link rel="stylesheet" href="../assets/css/cartv1.css" />
+    <link rel="stylesheet" href="../assets/css/cartv2.css" />
   </head>
   <body>
     <?php require_once('./navigation.php') ?>
@@ -57,6 +58,7 @@
                   <button class="btn" type="submit" name="remove">Remove</button>
                 </div>
                 <div>
+                  <p class="subtotal">Rp. <?= $subtotal ?></p>
                   <div class="cart-count">
                     <button type="submit" name="cart-min" class="cart-min">
                       <i class="fas fa-minus-circle"></i>
@@ -66,7 +68,6 @@
                       <i class="fas fa-plus-circle"></i>
                     </button>
                   </div>
-                  <p class="subtotal">Subtotal : Rp. <?= $subtotal ?></p>
                 </div>
               </div>
             </form>
@@ -105,7 +106,20 @@
             <p class="total-payment">Amount payable</p>
             <p>Rp. <?= $hargaTotal ?></p>
           </div>
-          <button class="btn">CHECKOUT</button>
+          <span class="line"></span>
+          <h4>METODE BAYAR</h4>
+          <form action="../functions/checkout.php" method="post">
+            <div class="radio-container">
+              <input type="radio" id="cod" name="metode_bayar" value="COD">
+              <label for="html">COD</label><br>
+              <input type="radio" id="ewallet" name="metode_bayar" value="E-wallet">
+              <label for="css">E-wallet</label><br>
+              <input type="radio" id="tfbank" name="metode_bayar" value="Transfer Bank">
+              <label for="javascript">Transfer Bank</label>
+            </div>
+            <button type="submit" class="btn">CHECKOUT</button>
+            <input type="hidden" name="total_bayar" value=<?= $hargaTotal ?>>
+          </form>
         </div>
       </div>
     </section>
