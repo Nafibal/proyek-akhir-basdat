@@ -4,30 +4,36 @@
   
   try {
     $conn->beginTransaction();
-
-    
     // PESANAN
     // Buat ID Pesanan
     $id_pesanan = uniqid("Ps.", false);
+    
     // Fetch ID Pembeli
     $stmtPembeli = $conn->prepare("SELECT * FROM pembeli WHERE email=?");
     $stmtPembeli->execute([$_SESSION['email']]); 
     $pembeli = $stmtPembeli->fetch();
     $id_pembeli = $pembeli['id_pembeli'];
+
     // Fetch ID kurir
     $kurir = query("SELECT * FROM kurir");
     $id_kurir = $kurir[rand(0,count($kurir)-1)]['id_kurir'];
+
     // Buat variable tanggal pesanan
     $tanggal_pesanan = date("Y-m-d H:i:s");
+
     // Buat variable total_bayar
     $total_bayar = $_POST['total_bayar'];
+
     // Buat Variable metode bayar
     $metode_bayar = $_POST['metode_bayar'];
+
     // Buat Variable status pesanan
     $status_pesanan = "dikirim";
+
     // Tambahkan Data ke tabel pesanan
     $pesanan = "INSERT INTO pesanan (id_pesanan, id_pembeli, id_kurir, tanggal_pesanan, total_bayar, metode_bayar, status_pesanan) VALUES (?,?,?,?,?,?,?)";
     $conn->prepare($pesanan)->execute([$id_pesanan, $id_pembeli, $id_kurir, $tanggal_pesanan, $total_bayar, $metode_bayar, $status_pesanan]);
+
 
     // INVOICE_DETAIL
     foreach ($_SESSION['cart'] as $cart => $item) {
@@ -55,8 +61,6 @@
       $conn->prepare($sql)->execute([$stok, $id_produk]);
     }
 
-    
-
 
     // commit the transaction
     $conn->commit();
@@ -70,14 +74,5 @@
     // show the error message
 	  die($e->getMessage());
   }
-
-  
-
-  
-  
-
-  
-
-
 
 ?>

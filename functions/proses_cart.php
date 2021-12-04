@@ -20,8 +20,6 @@
     $_SESSION['cart'][$id]['jumlah']++;
   }
   
-
-
   header('location:../pages/cart.php');
 
 ?>
