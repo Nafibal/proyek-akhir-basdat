@@ -1,4 +1,5 @@
 <?php
+
   // Ambil Produk
   // $produk = query("SELECT * FROM produk");
   require '../functions/functions.php';

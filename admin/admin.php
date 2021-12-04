@@ -1,17 +1,10 @@
 <?php
     session_start();
-    // require '../assets/functions.php';
-    // var_dump($_SESSION);
 
     if (!isset($_SESSION['admin'])) {
         header('Location: index.php');
         exit;
     }
-
-    // var_dump($produk);
-
-    
-
 
 ?>
 
@@ -44,14 +37,20 @@
             $_SESSION['choice'] = "kurir";
             include("tKurir.php");
         }
+        if (isset($_POST['tampil-pesanan'])) {
+            $_SESSION['choice'] = 'pesanan';
+            include('tPesanan.php');
+        }
         if (isset($_POST['pdf'])) {
             if ($_SESSION['choice'] == "produk") {
                 downloadPDF("Produk", "tProduk");
             } else if ($_SESSION['choice'] == "kurir") {
                 downloadPDF("Kurir", "tKurir");
+            } else if ($_SESSION['choice'] == "pesanan") {
+                downloadPDF("Pesanan", "tPesanan");
             } else {
                 // echo "pilihan ". $choice;
-                // echo "Pilih Data!!";
+                echo "Pilih Data!!";
             }
             unset($_SESSION['choice']);
         }
