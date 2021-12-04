@@ -8,7 +8,7 @@ catch( PDOException $e ) {
    die( "Error connecting to SQL Server" );   
 }
 
-// QUERY
+// Queri
 function query($query) { 
    global $conn;
    $result = $conn->query($query);
@@ -19,22 +19,7 @@ function query($query) {
    return $rows;
 }
 
-// INSERT
-function tambah($data) {
-   global $conn;
-   //contoh
-   // $id_admin = $data['id_admin'];
-   // $pass_admin = $data['pass_admin'];
-   // upload gambar
-   $gambar = upload ();
-   if( !$gambar ) {
-   return false;
-   }
-
-   $query = "INSERT INTO admin VALUES (:id_admin, :pass_admin)";
-   $stmt = $conn->prepare($query);
-   $stmt->execute($data);
-}
+// login
 function login($id) {
    global $conn;
    
@@ -46,16 +31,7 @@ function login($id) {
    $stmt->execute([$id, $date]);
 }
 
-// DELETE
-function hapus($data) {
-   global $conn;
-
-   $query = "DELETE FROM admin WHERE id_admin = :id_admin";
-   $stmt = $conn->prepare($query);
-   $stmt->execute($data);
-}
-
-// UPDATE
+// Update data akun
 function updateAkun($data, $email) {
    global $conn;
 
@@ -78,6 +54,7 @@ function updateAkun($data, $email) {
 
    return $stmt->rowCount();
 }
+// Edit data produk
 function editProduk($data) {
    global $conn;
 
@@ -92,6 +69,7 @@ function editProduk($data) {
 
    return $stmt->rowCount();
 }
+// edit data kurir
 function editKurir($data) {
    global $conn;
 
@@ -110,7 +88,7 @@ function editKurir($data) {
    return $stmt->rowCount();
 }
    
-// SEARCH
+// Cari produk
 function cari($keyword) {
    global $conn;
 
@@ -119,49 +97,7 @@ function cari($keyword) {
    return query($query);
 }
 
-// UPLOAD
-function upload() {
-
-   $namaFile = $_FILES['gambar']['name'];
-   $ukuranFile = $_FILES['gambar']['size'];
-   $error = $_FILES['gambar']['error'];
-   $tmpName = $_FILES['gambar']['temp_name'];
-
-   // Cek apakah tidak ada gambar yang diupload
-   if ($error === 4) {
-      echo "<script>
-               Alert('pilih gambar terlebih dahulu');
-            </script>";
-      return false;
-   }
-
-   // cek apakah yang diupload adalah gambar
-   $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
-   $ekstensiGambar = explode ('.', $namaFile);
-   $ekstensiGambar =  strtolower(end($ekstensiGambar));
-   if( !in_array ($ekstensiGambar, $ekstensiGambarValid)) {
-      echo "<script>
-                alert('yang anda upload bukan gambar!');
-             </script>";
-      return false;
-   }
-   // cek jika ukurannya terlalu besar
-   if( $ukuranFile > 1000000) {
-      echo "<script>
-         alert('ukuran gambar terlalu besar!');
-         </script>";
-      return false;
-   }
-   // lolos pengecekan, gambar siap diupload
-   // generate nama gambar baru
-   $namaFileBaru = uniqid();
-   $namaFileBaru .= '.';
-   $namaFileBaru .= $ekstensiGambar;
-   move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
-   return $namaFileBaru;
-}
-
-// REGISTRASI
+// registrasi
 function daftar($data) {
    global $conn;
 
@@ -198,4 +134,14 @@ function daftar($data) {
    return 1;
 }
 
+// Ambil Id Pembeli
+   function getId($email){
+      global $conn;
+
+      $stmt = $conn->prepare("SELECT * FROM pembeli WHERE email=?");
+      $stmt->execute([$email]); 
+      $result = $stmt->fetch();
+
+      return $result['id_pembeli'];
+   }
 ?>  
