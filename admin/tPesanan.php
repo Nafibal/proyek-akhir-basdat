@@ -36,7 +36,12 @@
           <td><?= $p['metode_bayar'] ?></td>
           <td><?= $p['status_pesanan'] ?></td>
           <td><?= $p['tanggal_selesai'] ?></td>
-          <td><a href="">Nota</a>
+          <td>
+            <form action="../functions/pdfNota.php" method="post">
+              <input type="hidden" name="id_pesanan" value=<?= $p['id_pesanan'] ?>>
+              <input type="submit" name='nota' value="nota">
+            </form>
+          </input>
           </tr>
         <?php endforeach; ?>   
       </tbody>

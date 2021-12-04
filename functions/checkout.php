@@ -19,6 +19,7 @@
     $id_kurir = $kurir[rand(0,count($kurir)-1)]['id_kurir'];
 
     // Buat variable tanggal pesanan
+    date_default_timezone_set('Asia/Jakarta');
     $tanggal_pesanan = date("Y-m-d H:i:s");
 
     // Buat variable total_bayar

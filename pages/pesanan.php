@@ -26,6 +26,7 @@
 
   // Menyelesaikan Pesanan
   if(isset($_POST['selesai'])) {
+    date_default_timezone_set('Asia/Jakarta');
     $tanggal_selesai = date("Y-m-d H:i:s");
 
     $sql = "UPDATE pesanan SET status_pesanan=?, tanggal_selesai=? WHERE id_pesanan=?";
@@ -66,7 +67,6 @@
               <div class="card">
                 <form action="" method='post'>
                   <div class="card-info-1">
-                    <p>id : <?= $pesanan['id_pesanan'] ?></p>
                     <p>Email : <?= $_SESSION['email'] ?></p>
                     <p>Metode Bayar : <?= $pesanan['metode_bayar'] ?></p>
                     <p>Rp. <?= $pesanan['total_bayar'] ?> </p>
@@ -90,13 +90,13 @@
         <?php if(!empty($pesanan_selesai)) { ?>
             <?php  foreach ($pesanan_selesai as $index => $pesanan): ?>
               <div class="card">
-                <form action="" method='post'>
+                <form action="../functions/pdfNota.php" method='post'>
                   <div class="card-info-1">
-                    <p>id : <?= $pesanan['id_pesanan'] ?></p>
                     <p>Email : <?= $_SESSION['email'] ?></p>
                     <p>Metode Bayar : <?= $pesanan['metode_bayar'] ?></p>
                     <p>Rp. <?= $pesanan['total_bayar'] ?> </p>
                     <button type="submit" name='nota' class="btn">Lihat Nota</button>
+                    <input type="hidden" name="id_pesanan" value=<?= $pesanan['id_pesanan'] ?>>
                   </div>
                   <div class="card-info-2">
                     <p class="tanggal"><?= $pesanan['tanggal_pesanan'] ?></p>
